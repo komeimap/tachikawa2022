@@ -50,7 +50,8 @@
                 if (error) throw error;
 
 
-                //console.log(collection);
+                console.log(collection);
+		console.log(point);
 
                 var transform = d3.geo.transform({
                         point: projectPoint
