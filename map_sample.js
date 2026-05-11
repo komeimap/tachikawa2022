@@ -46,15 +46,134 @@
         };
 
         function detail(link) {
+            link = trimValue(link);
             if (link.length == 0) {
                 return " ";
             } else {
                 console.log(link.length);
                 //return '</br><a href="' + link + '">詳細</a>';
-                return '</br><a id="syousai" href="' + link + '" onclick="window.open(this.href); return false;">詳細</a>'
+                return '</br><a id="syousai" href="' + escapeAttr(link) + '" onclick="window.open(this.href); return false;">詳細</a>'
             };
 
 
+        }
+
+        function trimValue(value) {
+            return value ? String(value).replace(/^\s+|\s+$/g, '') : '';
+        }
+
+        function escapeHtml(value) {
+            return trimValue(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function escapeAttr(value) {
+            return escapeHtml(value);
+        }
+
+        function isLink(value) {
+            return /^https?:\/\//i.test(trimValue(value));
+        }
+
+        function imageSrc(image) {
+            var name = trimValue(image);
+
+            if (name.length == 0) {
+                name = 'no-image';
+            }
+
+            if (/\.(jpg|jpeg|png|gif|webp)$/i.test(name)) {
+                return name.indexOf('/') >= 0 ? name : 'images/' + name;
+            }
+
+            return 'images/' + name + '.jpg';
+        }
+
+        function imageCaption(result, label) {
+            var caption = trimValue(result);
+            return label ? label + ': ' + caption : caption;
+        }
+
+        function collectImages(d) {
+            var images = [];
+            var imageFields = ['Image', 'Image2', 'Image3', 'Image4', 'Image5'];
+
+            imageFields.forEach(function(field) {
+                var image = trimValue(d[field]);
+
+                if (image.length > 0 && !isLink(image)) {
+                    images.push(image);
+                }
+            });
+
+            if (images.length == 0) {
+                images.push('no-image');
+            }
+
+            return images;
+        }
+
+        function detailLink(d) {
+            var link = trimValue(d.Detail);
+            var fallbackFields = ['Image2', 'Image3', 'Image4', 'Image5', 'ImageMode'];
+
+            if (link.length > 0) {
+                return link;
+            }
+
+            for (var i = 0; i < fallbackFields.length; i++) {
+                link = trimValue(d[fallbackFields[i]]);
+
+                if (isLink(link)) {
+                    return link;
+                }
+            }
+
+            return '';
+        }
+
+        function imageItemHtml(image, result, label, className) {
+            var src = imageSrc(image);
+            var labelHtml = label ? '<div class="tooltip_image_label">' + escapeHtml(label) + '</div>' : '';
+
+            return '<div class="' + className + '">' +
+                labelHtml +
+                '<a href="' + escapeAttr(src) + '" data-fancybox data-caption="' + escapeAttr(imageCaption(result, label)) + '">' +
+                '<img class="tooltip_img" src="' + escapeAttr(src) + '"/>' +
+                '</a>' +
+                '</div>';
+        }
+
+        function imagesHtml(d) {
+            var images = collectImages(d);
+            var mode = trimValue(d.ImageMode).toLowerCase();
+
+            if (mode == 'before_after' && images.length >= 2) {
+                return '<div class="tooltip_images tooltip_images_before_after">' +
+                    imageItemHtml(images[0], d.Result, 'Before', 'tooltip_image_item') +
+                    '<div class="tooltip_image_arrow">↓</div>' +
+                    imageItemHtml(images[1], d.Result, 'After', 'tooltip_image_item') +
+                    '</div>';
+            }
+
+            return '<div class="tooltip_images">' +
+                images.map(function(image) {
+                    return imageItemHtml(image, d.Result, '', 'tooltip_image_item');
+                }).join('') +
+                '</div>';
+        }
+
+        function tooltipHtml(d) {
+            return '<input type="image" style="position: absolute; right: 2%;" src="images/close.png" alt="" onClick="closeTooltip();">' +
+                '<table id="tooltip_table" width="95%" border="0" cellspacing="0" cellpadding="0"><tr><td colspan="2"><b>' +
+                escapeHtml(d.Result) + '</b></td></tr>' +
+                '<tr><td width="50%">' + imagesHtml(d) + '</td><td width="50%">' + escapeHtml(d.Description) +
+                detail(detailLink(d)) +
+                '</td></tr></table>';
         }
 
 
@@ -145,15 +264,7 @@
 
                         div.transition().duration(200)
                             .style('opacity', 1);
-                        div.html('<input type="image" style="position: absolute; right: 2%;" src="images/close.png" alt="" onClick="closeTooltip();">' +
-                            '<table id="tooltip_table" width="95%" border="0" cellspacing="0" cellpadding="0"><tr><td colspan="2"><b>' + 
-                            d.Result + '</b></td></tr>' +
-                            '<tr><td width="50%"><a href="images/' + d.Image +
-                            '.jpg" data-fancybox data-caption="' + d.Result +
-                            '"><img id="tooltip_img" src="images/' + d.Image +
-                            '.jpg"/></a></td><td width="50%">' + d.Description +
-                            detail(d.Detail) +
-                            '</td></tr></table>');
+                        div.html(tooltipHtml(d));
 
                         checked();
                         removeMarker();

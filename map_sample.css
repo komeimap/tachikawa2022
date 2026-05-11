@@ -74,6 +74,54 @@
                 height: 25vh;
             }
 
+            .tooltip_images {
+                width: 100%;
+                max-height: 45vh;
+                overflow-y: auto;
+                padding-right: 6px;
+                box-sizing: border-box;
+            }
+
+            .tooltip_image_item {
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .tooltip_image_item:last-child {
+                margin-bottom: 0;
+            }
+
+            .tooltip_img {
+                display: block;
+                width: auto;
+                max-width: 100%;
+                max-height: 25vh;
+                height: auto;
+                margin: 0 auto;
+            }
+
+            .tooltip_image_label {
+                margin-bottom: 4px;
+                color: #fff;
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 1.4;
+                text-align: left;
+            }
+
+            .tooltip_image_arrow {
+                margin: 2px 0 10px;
+                color: #fff;
+                font-size: 22px;
+                font-weight: bold;
+                line-height: 1;
+                text-align: center;
+            }
+
+            .tooltip_images_before_after .tooltip_img {
+                max-height: 20vh;
+            }
+
             #top_img {
                 width: auto;
                 max-height: 10vh;
@@ -154,10 +202,14 @@
                     width: 70%;
                     float: left;
                 }
-                #tooltip_img {
+                #tooltip_img,
+                .tooltip_img {
                     width: 80%;
                     max-width: 80%;
                     height: auto;
+                }
+                .tooltip_images {
+                    max-height: 42vh;
                 }
                 #button {
                     margin-top: 0em;
