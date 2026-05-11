@@ -1,9 +1,14 @@
         var map = L.map('map').setView([35.696228, 139.419084], 16);
 
-        mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + 'Contributors ',
-            maxZoom: 19,
+        // mapLink = '<a href="https://openstreetmap.org">OpenStreetMap</a>';
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     attribution: '&copy; ' + mapLink + 'Contributors ',
+        //     maxZoom: 19,
+        // }).addTo(map);
+        mapLink = '<a href="https://maps.gsi.go.jp/development/ichiran.html">国土地理院</a>';
+        L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink,
+            maxZoom: 18,
         }).addTo(map);
 
         var marker;
