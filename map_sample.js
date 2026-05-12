@@ -155,7 +155,7 @@
             if (mode == 'before_after' && images.length >= 2) {
                 return '<div class="tooltip_images tooltip_images_before_after">' +
                     imageItemHtml(images[0], d.Result, 'Before', 'tooltip_image_item') +
-                    '<div class="tooltip_image_arrow">↓</div>' +
+                    '<div class="tooltip_image_arrow"></div>' +
                     imageItemHtml(images[1], d.Result, 'After', 'tooltip_image_item') +
                     '</div>';
             }
