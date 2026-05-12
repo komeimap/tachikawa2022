@@ -176,6 +176,65 @@
                 '</td></tr></table>';
         }
 
+        var tooltipToken = 0;
+
+        function waitForTooltipImages(callback) {
+            var images = div.node().querySelectorAll('img.tooltip_img');
+            var remaining = images.length;
+            var finished = false;
+
+            function finish() {
+                if (finished) {
+                    return;
+                }
+
+                finished = true;
+                callback();
+            }
+
+            function imageDone() {
+                remaining--;
+
+                if (remaining <= 0) {
+                    finish();
+                }
+            }
+
+            if (remaining == 0) {
+                finish();
+                return;
+            }
+
+            Array.prototype.forEach.call(images, function(image) {
+                if (image.complete) {
+                    imageDone();
+                } else {
+                    image.onload = imageDone;
+                    image.onerror = imageDone;
+                }
+            });
+        }
+
+        function showTooltip(d) {
+            var currentToken = ++tooltipToken;
+
+            document.getElementById("toggle").checked = false;
+
+            div.transition().duration(0)
+                .style('opacity', 0);
+            div.html(tooltipHtml(d));
+
+            waitForTooltipImages(function() {
+                if (currentToken != tooltipToken) {
+                    return;
+                }
+
+                div.transition().duration(200)
+                    .style('opacity', 1);
+                checked();
+            });
+        }
+
 
         d3.json('tOutline.json', function(error, collection) {
             if (error) throw error;
@@ -262,11 +321,7 @@
                             .ease('elastic')
                             .attr('r', 12)
 
-                        div.transition().duration(200)
-                            .style('opacity', 1);
-                        div.html(tooltipHtml(d));
-
-                        checked();
+                        showTooltip(d);
                         removeMarker();
                     });
 

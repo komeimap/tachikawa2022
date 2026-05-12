@@ -16,7 +16,7 @@
             h3 {
                 color: white;
                 background-color: #4169e1;
-                padding: 1px;
+                padding: 1px 0 1px 4px;
                 border-bottom: solid 5px skyblue;
                 position: relative;
                 /*letter-spacing: 0.1em;:/
@@ -32,7 +32,7 @@
                width: 30%;
             }
 
-            h3::first-letter {
+            .map_title_main::first-letter {
                 font-size: 1.2em;
                 color: #ff7f50;
             }
@@ -102,6 +102,7 @@
             .tooltip_image_item {
                 flex: 1 1 0;
                 min-width: 0;
+                min-height: 25vh;
                 margin-bottom: 0;
                 text-align: left;
             }
@@ -144,6 +145,10 @@
 
             .tooltip_images_before_after .tooltip_img {
                 max-height: 20vh;
+            }
+
+            .tooltip_images_before_after .tooltip_image_item {
+                min-height: 20vh;
             }
 
             #top_img {
@@ -208,6 +213,14 @@
                 h2 {
                     color: #f00;
                 }
+                h3 {
+                    line-height: 1.25;
+                    padding: 2px 4px 6px;
+                }
+                .map_title_main,
+                .map_title_sub {
+                    display: block;
+                }
                 #description {
                     font-size: 12px;
                 }
@@ -260,6 +273,7 @@
                 .tooltip_image_item {
                     flex: 1 1 0;
                     min-width: 120px;
+                    min-height: 22vh;
                     margin-bottom: 0;
                 }
                 .tooltip_image_item:last-child {
