@@ -34,3 +34,10 @@
 #syousai {
     color: white;
 }
+
+@media screen and ( max-width:750px) {
+    .tooltip {
+        max-height: calc(100vh - 145px);
+        overflow-y: auto;
+    }
+}

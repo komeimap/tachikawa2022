@@ -228,27 +228,48 @@
                 }
                 #tooltip_img,
                 .tooltip_img {
-                    width: 80%;
-                    max-width: 80%;
+                    width: auto;
+                    max-width: 100%;
+                    max-height: 22vh;
                     height: auto;
                 }
-                .tooltip_images {
+                #tooltip_table,
+                #tooltip_table tbody,
+                #tooltip_table tr,
+                #tooltip_table td {
                     display: block;
-                    max-height: 42vh;
-                    overflow-x: hidden;
-                    overflow-y: auto;
+                    width: 100%;
+                }
+                .tooltip_title_cell {
+                    padding-bottom: 20px;
+                }
+                .tooltip_media_cell {
+                    padding-right: 0;
+                    padding-bottom: 20px;
+                }
+                .tooltip_text_cell {
+                    padding-top: 0;
+                }
+                .tooltip_images {
+                    display: flex;
+                    gap: 12px;
+                    max-height: none;
+                    overflow-x: auto;
+                    overflow-y: hidden;
                 }
                 .tooltip_image_item {
-                    margin-bottom: 10px;
+                    flex: 1 1 0;
+                    min-width: 120px;
+                    margin-bottom: 0;
                 }
                 .tooltip_image_item:last-child {
                     margin-bottom: 0;
                 }
                 .tooltip_image_arrow {
-                    margin: 2px 0 10px;
+                    margin-top: 10vh;
                 }
                 .tooltip_image_arrow:before {
-                    content: "↓";
+                    content: "→";
                 }
                 #button {
                     margin-top: 0em;
