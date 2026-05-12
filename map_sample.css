@@ -68,6 +68,18 @@
                 margin-top: 1em;
             }
 
+            #tooltip_table td {
+                box-sizing: border-box;
+            }
+
+            .tooltip_title_cell {
+                padding-bottom: 20px;
+            }
+
+            .tooltip_media_cell {
+                padding-right: 20px;
+            }
+
             #tooltip_img {
                 width: auto;
                 max-height: 25vh;

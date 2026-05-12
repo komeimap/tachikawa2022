@@ -169,9 +169,9 @@
 
         function tooltipHtml(d) {
             return '<input type="image" style="position: absolute; right: 2%;" src="images/close.png" alt="" onClick="closeTooltip();">' +
-                '<table id="tooltip_table" width="95%" border="0" cellspacing="0" cellpadding="0"><tr><td colspan="2"><b>' +
+                '<table id="tooltip_table" width="95%" border="0" cellspacing="0" cellpadding="0"><tr><td class="tooltip_title_cell" colspan="2"><b>' +
                 escapeHtml(d.Result) + '</b></td></tr>' +
-                '<tr><td width="50%">' + imagesHtml(d) + '</td><td width="50%">' + escapeHtml(d.Description) +
+                '<tr><td class="tooltip_media_cell" width="50%">' + imagesHtml(d) + '</td><td class="tooltip_text_cell" width="50%">' + escapeHtml(d.Description) +
                 detail(detailLink(d)) +
                 '</td></tr></table>';
         }
