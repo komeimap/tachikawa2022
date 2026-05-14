@@ -162,10 +162,20 @@
             }
 
             #return {
-                margin-top: .3em;
+                margin-top: .55em;
+                margin-left: .7em;
                 width: 80%;
                 float: left;
                 font-size: 14px;
+            }
+
+            #return table {
+                margin-bottom: 6px;
+            }
+
+            #return td {
+                vertical-align: middle;
+                padding-top: 0;
             }
 
             .detail_link_icon {
