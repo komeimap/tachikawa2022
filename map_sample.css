@@ -176,6 +176,7 @@
             #return td {
                 vertical-align: middle;
                 padding-top: 0;
+                padding-bottom: 6px;
             }
 
             .detail_link_icon {
