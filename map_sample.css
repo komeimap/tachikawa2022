@@ -179,6 +179,10 @@
                 padding-bottom: 6px;
             }
 
+            #return a {
+                margin-left: 5px;
+            }
+
             .detail_link_icon {
                 display: inline-block;
                 width: 27px;
@@ -189,6 +193,7 @@
                 border: 2px solid #9ed7df;
                 box-sizing: border-box;
                 vertical-align: middle;
+                margin-bottom: 3px;
             }
 
             .detail_link_icon:before {
