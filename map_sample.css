@@ -129,26 +129,23 @@
                 text-align: left;
             }
 
-            .tooltip_image_arrow {
-                flex: 0 0 auto;
-                margin-top: 12vh;
-                color: #fff;
-                font-size: 22px;
-                font-weight: bold;
-                line-height: 1;
-                text-align: center;
-            }
-
-            .tooltip_image_arrow:before {
-                content: "→";
-            }
-
             .tooltip_images_before_after .tooltip_img {
                 max-height: 20vh;
             }
 
             .tooltip_images_before_after .tooltip_image_item {
                 min-height: 20vh;
+            }
+
+            .tooltip_images_before_after .tooltip_image_label {
+                display: inline-block;
+                margin-bottom: 8px;
+                padding: 3px 10px;
+                background: #4169e1;
+                border-left: 4px solid #ff7f50;
+                color: #fff;
+                font-size: 15px;
+                line-height: 1.3;
             }
 
             #top_img {
@@ -278,12 +275,6 @@
                 }
                 .tooltip_image_item:last-child {
                     margin-bottom: 0;
-                }
-                .tooltip_image_arrow {
-                    margin-top: 10vh;
-                }
-                .tooltip_image_arrow:before {
-                    content: "→";
                 }
                 #button {
                     margin-top: 0em;
