@@ -170,16 +170,38 @@
 
             .detail_link_icon {
                 display: inline-block;
-                width: 25px;
-                height: 25px;
+                width: 27px;
+                height: 27px;
                 border-radius: 50%;
-                background: #668ad8;
-                color: #fff;
-                font-size: 18px;
-                font-weight: bold;
-                font-family: Arial, sans-serif;
-                line-height: 25px;
-                text-align: center;
+                position: relative;
+                background: #eef8fb;
+                border: 2px solid #9ed7df;
+                box-sizing: border-box;
+                vertical-align: middle;
+            }
+
+            .detail_link_icon:before {
+                content: "";
+                position: absolute;
+                left: 8px;
+                top: 6px;
+                width: 9px;
+                height: 13px;
+                border: 2px solid #5f9eaa;
+                border-radius: 2px;
+                background: #fff;
+                box-sizing: border-box;
+            }
+
+            .detail_link_icon:after {
+                content: "";
+                position: absolute;
+                left: 11px;
+                top: 11px;
+                width: 5px;
+                height: 2px;
+                background: #5f9eaa;
+                box-shadow: 0 4px 0 #5f9eaa;
             }
 
             td {
