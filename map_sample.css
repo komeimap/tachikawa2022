@@ -168,6 +168,20 @@
                 font-size: 14px;
             }
 
+            .detail_link_icon {
+                display: inline-block;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #668ad8;
+                color: #fff;
+                font-size: 18px;
+                font-weight: bold;
+                font-family: Arial, sans-serif;
+                line-height: 25px;
+                text-align: center;
+            }
+
             td {
                 font-size: 16px;
                 text-align: left;
